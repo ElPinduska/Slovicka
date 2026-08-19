@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slovíčka - Bydlení</title>
+    <title>Slovíčka - Bydlení a Cestování</title>
     <style>
-        body { font-family: sans-serif; padding: 15px; background-color: #f4f6f8; }
-        h2 { text-align: center; color: #1f4e78; }
+        body { font-family: sans-serif; padding: 15px; background-color: #f4f6f8; max-width: 600px; margin: 0 auto; }
+        h1 { text-align: center; color: #1f4e78; margin-bottom: 20px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #1f4e78; padding-bottom: 5px; margin-top: 30px; }
         .word-card { background: white; padding: 12px 16px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .cz { font-size: 14px; color: #666; }
         .en { font-size: 18px; font-weight: bold; color: #111; }
@@ -17,17 +18,21 @@
 </head>
 <body>
 
-    <h2>Slovníček: Bydlení</h2>
+    <h1>Procvičování slovíček</h1>
 
-    <div id="words"></div>
+    <h2>🏠 Bydlení (Housing)</h2>
+    <div id="words-housing"></div>
+
+    <h2>✈️ Cestování (Travelling)</h2>
+    <div id="words-travel"></div>
 
     <script>
-        const vocabulary = [
+        const housingVocabulary = [
             {cz: "Dům", en: "House", pron: "haos"},
             {cz: "Byt", en: "Apartment", pron: "əpaːtmənt"},
             {cz: "Pokoj", en: "Room", pron: "ruːm"},
             {cz: "Obývací pokoj", en: "Living room", pron: "liviŋ ruːm"},
-            {cz: "Ložnice", "en": "Bedroom", pron: "bedruːm"},
+            {cz: "Ložnice", en: "Bedroom", pron: "bedruːm"},
             {cz: "Kuchyně", en: "Kitchen", pron: "kičin"},
             {cz: "Koupelna", en: "Bathroom", pron: "baːθruːm"},
             {cz: "Zahrada", en: "Garden", pron: "gaːdən"},
@@ -45,23 +50,51 @@
             {cz: "Klíč", en: "Key", pron: "kiː"}
         ];
 
-        const container = document.getElementById('words');
+        const travelVocabulary = [
+            {cz: "Cestovat", en: "Travel", pron: "trævl"},
+            {cz: "Letiště", en: "Airport", pron: "eəpoːt"},
+            {cz: "Letadlo", en: "Airplane", pron: "eəplein"},
+            {cz: "Vlak", en: "Train", pron: "trein"},
+            {cz: "Autobus", en: "Bus", pron: "bas"},
+            {cz: "Auto", en: "Car", pron: "kaː"},
+            {cz: "Lístek / Jízdenka", en: "Ticket", pron: "tikit"},
+            {cz: "Cestovní pas", en: "Passport", pron: "paːspoːt"},
+            {cz: "Kuft / Zavazadlo", en: "Suitcase", pron: "suːtkeis"},
+            {cz: "Hotel", en: "Hotel", pron: "hou'tel"},
+            {cz: "Rezervace", en: "Reservation", pron: "rezəveišn"},
+            {cz: "Dovolená", en: "Vacation", pron: "veikeišn"},
+            {cz: "Pláž", en: "Beach", pron: "biːč"},
+            {cz: "Moře", en: "Sea", pron: "siː"},
+            {cz: "Mapa", en: "Map", pron: "mæp"},
+            {cz: "Turista", en: "Tourist", pron: "tuərist"},
+            {cz: "Cesta / Výlet", en: "Trip", pron: "trip"},
+            {cz: "Odjezd", en: "Departure", pron: "dipaːčə"},
+            {cz: "Příjezd", en: "Arrival", pron: "əraivl"},
+            {cz: "Šťastnou cestu!", en: "Have a nice trip!", pron: "hæv ə nais trip"}
+        ];
 
-        vocabulary.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'word-card';
-            card.innerHTML = `
-                <div>
-                    <div class="cz">${item.cz}</div>
-                    <div class="en">${item.en}</div>
-                    <div class="pron">[${item.pron}]</div>
-                </div>
-                <button onclick="speak('${item.en}')">🔊 Přehraj</button>
-            `;
-            container.appendChild(card);
-        });
+        function renderVocabulary(items, containerId) {
+            const container = document.getElementById(containerId);
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="cz">${item.cz}</div>
+                        <div class="en">${item.en}</div>
+                        <div class="pron">[${item.pron}]</div>
+                    </div>
+                    <button onclick="speak('${item.en.replace(/'/g, "\\'")}')">🔊 Přehraj</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        renderVocabulary(housingVocabulary, 'words-housing');
+        renderVocabulary(travelVocabulary, 'words-travel');
 
         function speak(text) {
+            window.speechSynthesis.cancel(); // Zastaví předchozí přehrávání
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US';
             window.speechSynthesis.speak(utterance);
