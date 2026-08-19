@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slovíčka - Bydlení</title>
+    <style>
+        body { font-family: sans-serif; padding: 15px; background-color: #f4f6f8; }
+        h2 { text-align: center; color: #1f4e78; }
+        .word-card { background: white; padding: 12px 16px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .cz { font-size: 14px; color: #666; }
+        .en { font-size: 18px; font-weight: bold; color: #111; }
+        .pron { font-size: 13px; color: #0066cc; }
+        button { background: #1f4e78; color: white; border: none; padding: 10px 14px; border-radius: 6px; font-size: 16px; cursor: pointer; }
+        button:active { background: #133350; }
+    </style>
+</head>
+<body>
+
+    <h2>Slovníček: Bydlení</h2>
+
+    <div id="words"></div>
+
+    <script>
+        const vocabulary = [
+            {cz: "Dům", en: "House", pron: "haos"},
+            {cz: "Byt", en: "Apartment", pron: "əpaːtmənt"},
+            {cz: "Pokoj", en: "Room", pron: "ruːm"},
+            {cz: "Obývací pokoj", en: "Living room", pron: "liviŋ ruːm"},
+            {cz: "Ložnice", "en": "Bedroom", pron: "bedruːm"},
+            {cz: "Kuchyně", en: "Kitchen", pron: "kičin"},
+            {cz: "Koupelna", en: "Bathroom", pron: "baːθruːm"},
+            {cz: "Zahrada", en: "Garden", pron: "gaːdən"},
+            {cz: "Garáž", en: "Garage", pron: "gæraːž"},
+            {cz: "Střecha", en: "Roof", pron: "ruːf"},
+            {cz: "Okno", en: "Window", pron: "windou"},
+            {cz: "Dveře", en: "Door", pron: "doː"},
+            {cz: "Stůl", en: "Table", pron: "teibl"},
+            {cz: "Židle", en: "Chair", pron: "čeə"},
+            {cz: "Pohovka", en: "Sofa", pron: "soufə"},
+            {cz: "Postel", en: "Bed", pron: "bed"},
+            {cz: "Skříň", en: "Wardrobe", pron: "woːdroub"},
+            {cz: "Lednička", en: "Fridge", pron: "fridž"},
+            {cz: "Trouba", en: "Oven", pron: "avən"},
+            {cz: "Klíč", en: "Key", pron: "kiː"}
+        ];
+
+        const container = document.getElementById('words');
+
+        vocabulary.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'word-card';
+            card.innerHTML = `
+                <div>
+                    <div class="cz">${item.cz}</div>
+                    <div class="en">${item.en}</div>
+                    <div class="pron">[${item.pron}]</div>
+                </div>
+                <button onclick="speak('${item.en}')">🔊 Přehraj</button>
+            `;
+            container.appendChild(card);
+        });
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
