@@ -26,6 +26,9 @@
     <h2>✈️ Cestování (Travelling)</h2>
     <div id="words-travel"></div>
 
+    <h2>🐕 Procházky s Ronem (Dog walking)</h2>
+    <div id="words-dog"></div>
+    
     <script>
         const housingVocabulary = [
             {cz: "Dům", en: "House", pron: "haos"},
@@ -72,6 +75,32 @@
             {cz: "Příjezd", en: "Arrival", pron: "əraivl"},
             {cz: "Šťastnou cestu!", en: "Have a nice trip!", pron: "hæv ə nais trip"}
         ];
+
+        const dogVocabulary = [
+            {cz: "Rozárka miluje svého psa Rona.", en: "Rozárka loves her dog, Ron.", pron: "rozárka lavz hər dog ron"},
+            {cz: "Dnes jdeme na Javorek.", en: "We are walking to Javorek today.", pron: "wí ár wókiŋ tu javorek tudej"},
+            {cz: "Podívej, Ron běhá po Louce!", en: "Look, Ron is running in the meadow!", pron: "luk ron iz raniŋ in d medou"},
+            {cz: "Chceš jít dnes na Skály?", en: "Do you want to go to Skály today?", pron: "du ju wont tu gou tu skály tudej"},
+            {cz: "Pojďme na Vařákovy paseky.", en: "Let's go to Vařákovy paseky.", pron: "lets gou tu vařákovy paseky"},
+            {cz: "Je mi jedenáct let.", en: "I am eleven years old.", pron: "aj em ilevn jírz ould"},
+            {cz: "Půjdu do páté třídy.", en: "I am going to the fifth grade.", pron: "aj em gouiŋ tu d fifθ grejd"},
+            {cz: "Pojď sem, Rone!", en: "Come here, Ron!", pron: "kam hír ron"},
+            {cz: "Sedni a čekej!", en: "Sit and wait!", pron: "sit end wejt"},
+            {cz: "To je hodný kluk!", en: "Good boy!", pron: "gud boj"},
+            {cz: "Hoď mu klacek, Rozárko.", en: "Throw the stick, Rozárka.", pron: "θrou d stik rozárka"},
+            {cz: "Ron je velmi rychlý.", en: "Ron is very fast.", pron: "ron iz veri fást"},
+            {cz: "Netahej za vodítko, Rone.", en: "Don't pull on the leash, Ron.", pron: "dount pul on d líš ron"},
+            {cz: "Kde máš míček?", en: "Where is your ball?", pron: "weər iz jór ból"},
+            {cz: "Ron čichá ke stromu.", en: "Ron is sniffing a tree.", pron: "ron iz snifiŋ ə trí"},
+            {cz: "Má žízeň?", en: "Is he thirsty?", pron: "iz hí θrsti"},
+            {cz: "Dej mu trochu vody.", en: "Give him some water.", pron: "giv him sam wótr"},
+            {cz: "Tohle je naše oblíbená procházka.", en: "This is our favorite walk.", pron: "ðis iz aue fejvrit wók"},
+            {cz: "Jsi unavená?", en: "Are you tired?", pron: "ár ju tajrd"},
+            {cz: "Je čas jít domů.", en: "It is time to go home.", pron: "it iz tajm tu gou houm"}
+        ];
+
+        // Spuštění vykreslení pro novou sekci
+        renderVocabulary(dogVocabulary, 'words-dog');
 
         function renderVocabulary(items, containerId) {
             const container = document.getElementById(containerId);
